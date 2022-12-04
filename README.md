@@ -1,0 +1,1 @@
+# multiplicador-binario-sequencial
