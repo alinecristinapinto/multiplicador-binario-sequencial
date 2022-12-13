@@ -39,20 +39,23 @@ end
 
 always @(posedge clock or posedge start)
 begin
-    if(start)begin
+    if(start && estado_atual != REPOUSO)begin
         // Reseta os valores guardados nos registradores
-        estado_atual <= REPOUSO;
         registrador_a <= 0;
         registrador_b <= 0;
         produto <= 0;
+        estado_atual <= REPOUSO;
     end
     else begin
         case(estado_atual)
             REPOUSO: begin 
-              // Carrega os registradores com os valores de multiplicando e multiplicador
-              registrador_a <= multiplicando;
-        	  registrador_b <= multiplicador;
-              estado_atual <= S1;
+              if(start) begin 
+                // Carrega os valores dos registradores
+                registrador_a <= multiplicando;
+                registrador_b <= multiplicador;
+                estado_atual <= S1;
+              end
+              else estado_atual <= REPOUSO;
             end
             S1: estado_atual <= S2;
             S2: estado_atual <= S3;

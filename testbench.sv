@@ -15,12 +15,13 @@ module mbs_teste;
     initial begin
         $dumpfile("dump.vcd"); $dumpvars;
 
-        clock = 1;
-        start = 1;
-
-        #10 start = 0;
-
-        $display("A = 120, B = 96","\n");
+        clock = 0;
+        start = 0;
+      
+        #10 start = 1;
+      	#5 start = 0;
+      
+      	$display("A = 120, B = 96");
 	    $display("ESTADO = ", mult.estado_atual, " A = ", mult.registrador_a, ", B = ", mult.registrador_b, ", P = ", mult.produto);
 	    #20 $display("ESTADO = ", mult.estado_atual, " A = ", mult.registrador_a, ", B = ", mult.registrador_b, ", P = ", mult.produto);
 	    #20 $display("ESTADO = ", mult.estado_atual, " A = ", mult.registrador_a, ", B = ", mult.registrador_b, ", P = ", mult.produto);
@@ -29,7 +30,6 @@ module mbs_teste;
 	    #20 $display("ESTADO = ", mult.estado_atual, " A = ", mult.registrador_a, ", B = ", mult.registrador_b, ", P = ", mult.produto);
 	    #20 $display("ESTADO = ", mult.estado_atual, " A = ", mult.registrador_a, ", B = ", mult.registrador_b, ", P = ", mult.produto);
       	#20 $display("ESTADO = ", mult.estado_atual, " A = ", mult.registrador_a, ", B = ", mult.registrador_b, ", P = ", mult.produto);
-	    #20 $display("ESTADO = ", mult.estado_atual, " A = ", mult.registrador_a, ", B = ", mult.registrador_b, ", P = ", mult.produto);
 
         #200 $finish;
     end
